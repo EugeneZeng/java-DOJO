@@ -38,7 +38,7 @@ public class AppTest
     	assertTrue( "tluafed".equals(str) );
     	str = app.output("");
     	assertTrue("".equals(str));
-    	str = app.output("");
+    	str = app.output(null);
     	assertTrue("".equals(str));
     }
 }
