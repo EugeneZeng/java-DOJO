@@ -40,5 +40,7 @@ public class AppTest
     	assertTrue("".equals(str));
     	str = app.output(null);
     	assertTrue("".equals(str));
+    	str = app.output("default app");
+    	assertTrue("ppatluafed".equals(str));
     }
 }
