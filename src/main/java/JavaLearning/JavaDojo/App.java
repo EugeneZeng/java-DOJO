@@ -1,5 +1,5 @@
 package JavaLearning.JavaDojo;
-
+import java.lang.*;
 /**
  * Hello world!
  *
@@ -7,10 +7,12 @@ package JavaLearning.JavaDojo;
 public class App 
 {
     public String output(String str){
-    	return null;
+
+    	return new StringBuffer(str).reverse().toString();
     }
 	public static void main( String[] args )
     {
+		
         System.out.println( "Hello World!" );
     }
 }
