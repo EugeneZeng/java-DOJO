@@ -36,5 +36,9 @@ public class AppTest
         App app = new App();
         String str = app.output("default");
     	assertTrue( "tluafed".equals(str) );
+    	str = app.output("");
+    	assertTrue("".equals(str));
+    	str = app.output(null);
+    	assertTrue("".equals(str));
     }
 }
