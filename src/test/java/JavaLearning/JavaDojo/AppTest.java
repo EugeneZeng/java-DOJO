@@ -33,6 +33,8 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        App app = new App();
+        String str = app.output("default");
+    	assertTrue( "tluafed".equals(str) );
     }
 }

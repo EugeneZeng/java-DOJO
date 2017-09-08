@@ -6,7 +6,10 @@ package JavaLearning.JavaDojo;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public String output(String str){
+    	return null;
+    }
+	public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
     }
