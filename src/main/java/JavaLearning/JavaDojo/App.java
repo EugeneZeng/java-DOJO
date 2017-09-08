@@ -10,10 +10,10 @@ public class App
 
     	if(str==null)
     	{
-    		str="";
-    		return str;
+    		return "";
     	}
-    	return new StringBuffer(str).reverse().toString();
+    	String str1=str.replaceAll(" ", "");
+    	return new StringBuffer(str1).reverse().toString();
     	
     	
     }
