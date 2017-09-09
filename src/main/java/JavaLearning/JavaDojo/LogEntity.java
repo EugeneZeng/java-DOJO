@@ -1,9 +1,10 @@
 package JavaLearning.JavaDojo;
 
+import java.util.*;
 public class LogEntity {
 
 	private String ip;
-	private String requestTime;
+	private Date requestTime;
 	private String requestMethod;
 	private String requestPath;
 	private String requestVersion;
@@ -12,17 +13,17 @@ public class LogEntity {
 	private String terminalName;
 	private String terminalVersion;
 	private String terminalDescription;
-	private String updateTime;
+	private Date updateTime;
 	public String getIp() {
 		return ip;
 	}
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public String getRequestTime() {
+	public Date getRequestTime() {
 		return requestTime;
 	}
-	public void setRequestTime(String requestTime) {
+	public void setRequestTime(Date requestTime) {
 		this.requestTime = requestTime;
 	}
 	public String getRequestMethod() {
@@ -73,10 +74,10 @@ public class LogEntity {
 	public void setTerminalDescription(String terminalDescription) {
 		this.terminalDescription = terminalDescription;
 	}
-	public String getUpdateTime() {
+	public Date getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(String updateTime) {
+	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
 	
