@@ -13,7 +13,40 @@ public class LogHandler {
 		logEntity.setIp(getIpFromString(logStr, logEntity));
 		getTimeFromString(logStr, logEntity);
 		logEntity.setRequestTime(getTimeFromString(logStr, logEntity));
+		getMethod(logStr, logEntity);
+		logEntity.setRequestMethod(getMethod(logStr, logEntity));
+		getRequestPath(logStr, logEntity);
+		logEntity.setRequestPath(getRequestPath(logStr, logEntity));
+		getRequestVersion(logStr, logEntity);
+		
 		return logEntity;
+	}
+
+	private String getRequestVersion(String logStr, LogEntity logEntity) {
+		String[] stringArray = logStr.split("\"");
+		String str = new StringBuffer(stringArray[1]).toString();
+		String[] strArray = str.split(" ");
+		String requestVersion = new StringBuffer(strArray[2]).toString();
+		logEntity.setRequestVersion(requestVersion);
+		return requestVersion;
+	}
+
+	private String getRequestPath(String logStr, LogEntity logEntity) {
+		String[] stringArray = logStr.split("\"");
+		String str = new StringBuffer(stringArray[1]).toString();
+		String[] strArray = str.split(" ");
+		String requestPath = new StringBuffer(strArray[1]).toString();
+		logEntity.setRequestPath(requestPath);
+		return requestPath;
+	}
+
+	private String getMethod(String logStr, LogEntity logEntity) {
+		String[] stringArray = logStr.split("\"");
+		String str = new StringBuffer(stringArray[1]).toString();
+		String[] strArray = str.split(" ");
+		String method = new StringBuffer(strArray[0]).toString();
+		logEntity.setRequestMethod(method);
+		return method;
 	}
 
 	private Date getTimeFromString(String logStr, LogEntity logEntity) {
