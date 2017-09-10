@@ -9,43 +9,96 @@ public class LogHandler {
 
 	public LogEntity getEntity(String logStr) {
 		LogEntity logEntity = new LogEntity();
-		getIpFromString(logStr, logEntity);
+
 		logEntity.setIp(getIpFromString(logStr, logEntity));
-		getTimeFromString(logStr, logEntity);
+
 		logEntity.setRequestTime(getTimeFromString(logStr, logEntity));
-		getMethod(logStr, logEntity);
-		logEntity.setRequestMethod(getMethod(logStr, logEntity));
-		getRequestPath(logStr, logEntity);
-		logEntity.setRequestPath(getRequestPath(logStr, logEntity));
-		getRequestVersion(logStr, logEntity);
-		
+
+		logEntity.setRequestMethod(getMethod(logStr));
+
+		logEntity.setRequestPath(getRequestPath(logStr));
+
+		logEntity.setRequestVersion(getRequestVersion(logStr));
+
+		logEntity.setRequestStatus(getStatus(logStr));
+
+		logEntity.setRequestFromUrl(getUrl(logStr));
+
+		logEntity.setTerminalName(getTerminalName(logStr));
+
+		logEntity.setTerminalVersion(getTerminalVersion(logStr));
+
+		logEntity.setTerminalDescription(getTerminalDescription(logStr));
+
 		return logEntity;
 	}
 
-	private String getRequestVersion(String logStr, LogEntity logEntity) {
+
+	private String getTerminalDescription(String logStr) {
+		String[] stringArray = logStr.split("\"");
+		String str = new StringBuffer(stringArray[5]).toString();
+		String[] strArray = str.split("\\(");
+		String terminalDescription = new StringBuffer(strArray[1]).insert(0, '(').toString();
+		return terminalDescription;
+	}
+
+	
+
+	private String getTerminalVersion(String logStr) {
+		String[] stringArray = logStr.split("\"");
+		String str = new StringBuffer(stringArray[5]).toString();
+		String[] strArray = str.split("\\/");
+		String strArray1 = new StringBuffer(strArray[1]).toString();
+		String[] strArray2 = strArray1.split(" ");
+		String terminalVersion = new StringBuffer(strArray2[0]).toString();
+		return terminalVersion;
+	}
+
+	
+	
+	private String getTerminalName(String logStr) {
+		String[] stringArray = logStr.split("\"");
+		String str = new StringBuffer(stringArray[5]).toString();
+		String[] strArray = str.split("\\/");
+		String terminalName = new StringBuffer(strArray[0]).toString();
+		return terminalName;
+	}
+
+	private String getUrl(String logStr) {
+		String[] stringArray = logStr.split("\"");
+		String url = new StringBuffer(stringArray[3]).toString();
+		return url;
+	}
+
+	private String getStatus(String logStr) {
+		String[] stringArray = logStr.split("\"");
+		String str = new StringBuffer(stringArray[2]).toString();
+		String[] strArray = str.split(" ");
+		String requestStatus = new StringBuffer(strArray[1]).toString();
+		return requestStatus;
+	}
+
+	private String getRequestVersion(String logStr) {
 		String[] stringArray = logStr.split("\"");
 		String str = new StringBuffer(stringArray[1]).toString();
 		String[] strArray = str.split(" ");
 		String requestVersion = new StringBuffer(strArray[2]).toString();
-		logEntity.setRequestVersion(requestVersion);
 		return requestVersion;
 	}
 
-	private String getRequestPath(String logStr, LogEntity logEntity) {
+	private String getRequestPath(String logStr) {
 		String[] stringArray = logStr.split("\"");
 		String str = new StringBuffer(stringArray[1]).toString();
 		String[] strArray = str.split(" ");
 		String requestPath = new StringBuffer(strArray[1]).toString();
-		logEntity.setRequestPath(requestPath);
 		return requestPath;
 	}
 
-	private String getMethod(String logStr, LogEntity logEntity) {
+	private String getMethod(String logStr) {
 		String[] stringArray = logStr.split("\"");
 		String str = new StringBuffer(stringArray[1]).toString();
 		String[] strArray = str.split(" ");
 		String method = new StringBuffer(strArray[0]).toString();
-		logEntity.setRequestMethod(method);
 		return method;
 	}
 
