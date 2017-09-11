@@ -1,6 +1,7 @@
 package JavaLearning.JavaDojo;
 
 import java.text.*;
+import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -122,6 +123,28 @@ public class LogHandler {
 		Matcher ipMatcher = Pattern.compile(ipRegex).matcher(logStr);
 		ipMatcher.find();
 		return ipMatcher.group(0);
+	}
+
+
+	public ArrayList<String> getStringListFromPath(String path) throws IOException {
+
+		return readTxtFile(path);
+	}
+
+	private ArrayList<String> readTxtFile(String path) throws FileNotFoundException, IOException {
+		StringBuilder result = new StringBuilder();
+		ArrayList<String> strList = new ArrayList<String>();
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		String read = "";
+
+		while ((read = br.readLine()) != null) {
+			result.append(System.lineSeparator() + read);
+			strList.add(read);
+		}
+
+		br.close();
+
+		return strList;
 	}
 
 }
