@@ -70,6 +70,10 @@ public class LogHandlerTest extends TestCase {
 			assertEquals(strList.size(), 2);
 			assertEquals(strList.get(0), "# java-DOJO");
 			assertEquals(strList.get(1), "Build this project for java learning.");
+			strList = logHandler.getStringListFromPath(null);
+			assertEquals(strList.size(), 0);
+			strList = logHandler.getStringListFromPath("/path/not/exist");
+			assertEquals(strList.size(), 0);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
