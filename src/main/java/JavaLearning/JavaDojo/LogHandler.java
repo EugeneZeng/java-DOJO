@@ -128,23 +128,39 @@ public class LogHandler {
 
 	public ArrayList<String> getStringListFromPath(String path) throws IOException {
 
-		return readTxtFile(path);
-	}
-
-	private ArrayList<String> readTxtFile(String path) throws FileNotFoundException, IOException {
-		StringBuilder result = new StringBuilder();
 		ArrayList<String> strList = new ArrayList<String>();
-		BufferedReader br = new BufferedReader(new FileReader(path));
-		String read = "";
+
+		if (path == null) {
+
+			return strList;
+
+		}
+
+		FileReader fr;
+		try {
+			fr = new FileReader(path);
+		} catch (FileNotFoundException e) {
+
+			return strList;
+
+		}
+
+		BufferedReader br = new BufferedReader(fr);
+
+		String read = null;
 
 		while ((read = br.readLine()) != null) {
-			result.append(System.lineSeparator() + read);
+
+			new StringBuilder().append(System.lineSeparator() + read);
 			strList.add(read);
+
 		}
 
 		br.close();
 
 		return strList;
 	}
+
+	
 
 }
