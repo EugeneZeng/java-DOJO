@@ -151,7 +151,6 @@ public class LogHandler {
 
 		while ((read = br.readLine()) != null) {
 
-			new StringBuilder().append(System.lineSeparator() + read);
 			strList.add(read);
 
 		}
@@ -160,7 +159,5 @@ public class LogHandler {
 
 		return strList;
 	}
-
-	
 
 }
