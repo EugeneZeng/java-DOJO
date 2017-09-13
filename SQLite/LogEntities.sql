@@ -1,5 +1,4 @@
 CREATE TABLE LogEntities (
-	id INTEGER NOT NULL,
 	ip TEXT NOT NULL,
 	requestTime INTEGER,
 	requestMethod TEXT,
@@ -7,8 +6,6 @@ CREATE TABLE LogEntities (
 	requestVersion TEXT,
 	requestStatus INTEGER,
 	requestFromUrl TEXT,
-	terminalName TEXT,
-	terminalVersion TEXT,
-	terminalDescription TEXT,
+	terminalInfor TEXT,
 	updateTime INTEGER
 ) ;
