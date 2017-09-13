@@ -74,6 +74,13 @@ public class LogHandlerTest extends TestCase {
 			assertEquals(strList.size(), 0);
 			strList = logHandler.getStringListFromPath("/path/not/exist");
 			assertEquals(strList.size(), 0);
+			strList = logHandler.getStringListFromPath("prototype/nginx.access.log");
+			assertEquals(strList.size(), 37);
+			ArrayList<LogEntity> logEntities = new ArrayList<LogEntity>();
+			for(String str : strList){
+				logEntities.add(logHandler.getEntity(str));
+			}
+			assertEquals(logEntities.size(), 37);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
