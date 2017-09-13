@@ -11,9 +11,9 @@ public class LogHandler {
 	public LogEntity getEntity(String logStr) {
 		LogEntity logEntity = new LogEntity();
 
-		logEntity.setIp(getIpFromString(logStr, logEntity));
+		logEntity.setIp(getIpFromString(logStr));
 
-		logEntity.setRequestTime(getTimeFromString(logStr, logEntity));
+		logEntity.setRequestTime(getTimeFromString(logStr));
 
 		logEntity.setRequestMethod(getMethod(logStr));
 
@@ -38,8 +38,11 @@ public class LogHandler {
 	private String getTerminalDescription(String logStr) {
 		String[] stringArray = logStr.split("\"");
 		String str = new StringBuffer(stringArray[5]).toString();
-		String[] strArray = str.split("\\(");
-		String terminalDescription = new StringBuffer(strArray[1]).insert(0, '(').toString();
+		//String[] strArray = str.split("\\(");
+		//String terminalDescription = new StringBuffer(strArray[1]).insert(0, '(').toString();
+		String[] strArray = str.split(" ");
+		String terminalDescription = str.replaceAll(strArray[0], "").trim();
+		
 		return terminalDescription;
 	}
 
@@ -52,6 +55,8 @@ public class LogHandler {
 		String strArray1 = new StringBuffer(strArray[1]).toString();
 		String[] strArray2 = strArray1.split(" ");
 		String terminalVersion = new StringBuffer(strArray2[0]).toString();
+		
+		System.out.println(terminalVersion);
 		return terminalVersion;
 	}
 
@@ -103,7 +108,7 @@ public class LogHandler {
 		return method;
 	}
 
-	private Date getTimeFromString(String logStr, LogEntity logEntity) {
+	private Date getTimeFromString(String logStr) {
 		Date date = null;
 		String timeRegex = "\\d+\\/\\w+\\/\\d+\\:\\d+\\:\\d+\\:\\d+\\s\\+\\d+";
 		Matcher TimeMatcher = Pattern.compile(timeRegex).matcher(logStr);
@@ -118,7 +123,7 @@ public class LogHandler {
 
 	}
 
-	private String getIpFromString(String logStr, LogEntity logEntity) {
+	private String getIpFromString(String logStr) {
 		String ipRegex = "\\d+\\.\\d+\\.\\d+\\.\\d+";
 		Matcher ipMatcher = Pattern.compile(ipRegex).matcher(logStr);
 		ipMatcher.find();
@@ -156,7 +161,7 @@ public class LogHandler {
 		}
 
 		br.close();
-
+		
 		return strList;
 	}
 
