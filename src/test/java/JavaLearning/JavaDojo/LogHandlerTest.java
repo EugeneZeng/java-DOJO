@@ -52,15 +52,10 @@ public class LogHandlerTest extends TestCase {
 				requestFromUrl,
 				"http://pmchat.24k.hk/studio?utm_source=pn14&utm_medium=ag&utm_campaign=yy&utm_content=AD_pcuiZS_top");
 
-		String terminalName = logEntity.getTerminalName();
-		assertEquals(terminalName, "Mozilla");
-
-		String terminalVersion = logEntity.getTerminalVersion();
-		assertEquals(terminalVersion, "5.0");
-
-		String terminalDescription = logEntity.getTerminalDescription();
-		assertEquals(terminalDescription,
-				"(compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)");
+		String terminalInfor = logEntity.getTerminalInfor();
+		assertEquals(
+				terminalInfor,
+				"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)");
 	}
 
 	public void testGetStringListFromPath() {

@@ -10,9 +10,7 @@ public class LogEntity {
 	private String requestVersion;
 	private String requestStatus;
 	private String requestFromUrl;
-	private String terminalName;
-	private String terminalVersion;
-	private String terminalDescription;
+	private String terminalInfor;
 	private Date updateTime;
 	public String getIp() {
 		return ip;
@@ -56,29 +54,17 @@ public class LogEntity {
 	public void setRequestFromUrl(String requestFromUrl) {
 		this.requestFromUrl = requestFromUrl;
 	}
-	public String getTerminalName() {
-		return terminalName;
-	}
-	public void setTerminalName(String terminalName) {
-		this.terminalName = terminalName;
-	}
-	public String getTerminalVersion() {
-		return terminalVersion;
-	}
-	public void setTerminalVersion(String terminalVersion) {
-		this.terminalVersion = terminalVersion;
-	}
-	public String getTerminalDescription() {
-		return terminalDescription;
-	}
-	public void setTerminalDescription(String terminalDescription) {
-		this.terminalDescription = terminalDescription;
-	}
 	public Date getUpdateTime() {
 		return updateTime;
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	public String getTerminalInfor() {
+		return terminalInfor;
+	}
+	public void setTerminalInfor(String terminalInfor) {
+		this.terminalInfor = terminalInfor;
 	}
 	
 

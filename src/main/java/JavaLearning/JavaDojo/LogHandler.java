@@ -24,51 +24,20 @@ public class LogHandler {
 		logEntity.setRequestStatus(getStatus(logStr));
 
 		logEntity.setRequestFromUrl(getUrl(logStr));
-
-		logEntity.setTerminalName(getTerminalName(logStr));
-
-		logEntity.setTerminalVersion(getTerminalVersion(logStr));
-
-		logEntity.setTerminalDescription(getTerminalDescription(logStr));
+		
+		logEntity.setTerminalInfor(getTerminalInforFromString(logStr));
 
 		return logEntity;
 	}
-
-
-	private String getTerminalDescription(String logStr) {
-		String[] stringArray = logStr.split("\"");
-		String str = new StringBuffer(stringArray[5]).toString();
-		//String[] strArray = str.split("\\(");
-		//String terminalDescription = new StringBuffer(strArray[1]).insert(0, '(').toString();
-		String[] strArray = str.split(" ");
-		String terminalDescription = str.replaceAll(strArray[0], "").trim();
-		
-		return terminalDescription;
-	}
-
-	
-
-	private String getTerminalVersion(String logStr) {
-		String[] stringArray = logStr.split("\"");
-		String str = new StringBuffer(stringArray[5]).toString();
-		String[] strArray = str.split("\\/");
-		String strArray1 = new StringBuffer(strArray[1]).toString();
-		String[] strArray2 = strArray1.split(" ");
-		String terminalVersion = new StringBuffer(strArray2[0]).toString();
-		
-		System.out.println(terminalVersion);
-		return terminalVersion;
-	}
-
 	
 	
-	private String getTerminalName(String logStr) {
-		String[] stringArray = logStr.split("\"");
-		String str = new StringBuffer(stringArray[5]).toString();
-		String[] strArray = str.split("\\/");
-		String terminalName = new StringBuffer(strArray[0]).toString();
-		return terminalName;
+
+	private String getTerminalInforFromString(String logStr) {
+		// TODO Auto-generated method stub
+		return "";
 	}
+
+
 
 	private String getUrl(String logStr) {
 		String[] stringArray = logStr.split("\"");
