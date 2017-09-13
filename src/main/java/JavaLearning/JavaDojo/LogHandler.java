@@ -33,11 +33,10 @@ public class LogHandler {
 	
 
 	private String getTerminalInforFromString(String logStr) {
-		// TODO Auto-generated method stub
-		return "";
+		String[] stringArray = logStr.split("\"");
+		String str = new StringBuffer(stringArray[5]).toString();
+		return str;
 	}
-
-
 
 	private String getUrl(String logStr) {
 		String[] stringArray = logStr.split("\"");
@@ -89,7 +88,6 @@ public class LogHandler {
 			e.printStackTrace();
 		}
 		return date;
-
 	}
 
 	private String getIpFromString(String logStr) {
@@ -99,38 +97,24 @@ public class LogHandler {
 		return ipMatcher.group(0);
 	}
 
-
 	public ArrayList<String> getStringListFromPath(String path) throws IOException {
-
 		ArrayList<String> strList = new ArrayList<String>();
-
 		if (path == null) {
-
 			return strList;
-
 		}
-
 		FileReader fr;
 		try {
 			fr = new FileReader(path);
 		} catch (FileNotFoundException e) {
-
 			return strList;
-
 		}
 
 		BufferedReader br = new BufferedReader(fr);
-
 		String read = null;
-
 		while ((read = br.readLine()) != null) {
-
 			strList.add(read);
-
 		}
-
-		br.close();
-		
+		br.close();	
 		return strList;
 	}
 
