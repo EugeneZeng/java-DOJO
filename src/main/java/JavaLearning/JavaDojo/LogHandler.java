@@ -14,7 +14,7 @@ public class LogHandler {
 		logEntity.setIp(getIpFromString(logStr));
 
 		logEntity.setRequestTime(getTimeFromString(logStr));
-
+		
 		logEntity.setRequestMethod(getMethod(logStr));
 
 		logEntity.setRequestPath(getRequestPath(logStr));
@@ -78,23 +78,21 @@ public class LogHandler {
 
 	private Date getTimeFromString(String logStr) {
 		Date date = null;
-		String timeRegex = "\\d+\\/\\w+\\/\\d+\\:\\d+\\:\\d+\\:\\d+\\s\\+\\d+";
-		Matcher TimeMatcher = Pattern.compile(timeRegex).matcher(logStr);
-		TimeMatcher.find();
+		String time=logStr.split("\\[")[1].split("\\]")[0];
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
 		try {
-			date = dateFormat.parse(TimeMatcher.group(0));
+			date = dateFormat.parse(time);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
 		return date;
 	}
 
 	private String getIpFromString(String logStr) {
-		String ipRegex = "\\d+\\.\\d+\\.\\d+\\.\\d+";
-		Matcher ipMatcher = Pattern.compile(ipRegex).matcher(logStr);
-		ipMatcher.find();
-		return ipMatcher.group(0);
+		String ip = logStr.split(" ")[0];
+		return ip;
 	}
 
 	public ArrayList<String> getStringListFromPath(String path) throws IOException {
@@ -116,6 +114,7 @@ public class LogHandler {
 		}
 		br.close();	
 		return strList;
+		
 	}
 
 }

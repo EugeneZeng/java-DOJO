@@ -1,8 +1,8 @@
 package JavaLearning.JavaDojo;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
-
 import org.apache.commons.dbutils.*;
 
 //import java.lang.*;
@@ -50,13 +50,13 @@ public class App {
 	}
 
 	private void insertLogEntity(LogEntity logEntity) throws SQLException {
+		Connection connection = getDBConnection();
 		QueryRunner run = new QueryRunner();
 		String sql = "INSERT INTO LogEntities(ip,requestTime,requestMethod,requestPath,requestVersion,requestStatus,requestFromUrl,terminalInfor) VALUES(?,?,?,?,?,?,?,?)";
 		Object[] params = { logEntity.getIp(), logEntity.getRequestTime(), logEntity.getRequestMethod(),
 				logEntity.getRequestPath(), logEntity.getRequestVersion(), logEntity.getRequestStatus(),
 				logEntity.getRequestFromUrl(), logEntity.getTerminalInfor() };
-		Connection connection = getDBConnection();
-
+		
 		try {
 			 run.update(connection, sql, params);
 		} catch (SQLException sqle) {
@@ -66,12 +66,41 @@ public class App {
 	
 	}
 
-	public static void main(String[] args) throws SQLException {
+
+	
+	private void insertStrlist(ArrayList<String> strList) throws SQLException {
+		LogHandler logHandler = new LogHandler();
+		QueryRunner run = new QueryRunner();
+		Connection connection = getDBConnection();
+		for(int i = 0; i<strList.size();i++){					
+		String sql = "INSERT INTO LogEntities(ip,requestTime,requestMethod,requestPath,requestVersion,requestStatus,requestFromUrl,terminalInfor) VALUES(?,?,?,?,?,?,?,?)";
+		Object[] params = { logHandler.getEntity(strList.get(i)).getIp(), logHandler.getEntity(strList.get(i)).getRequestTime(), logHandler.getEntity(strList.get(i)).getRequestMethod(),
+				logHandler.getEntity(strList.get(i)).getRequestPath(), logHandler.getEntity(strList.get(i)).getRequestVersion(), logHandler.getEntity(strList.get(i)).getRequestStatus(),
+				logHandler.getEntity(strList.get(i)).getRequestFromUrl(), logHandler.getEntity(strList.get(i)).getTerminalInfor() };		
+		try {
+			 run.update(connection, sql, params);
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+	
+		}
+		DbUtils.closeQuietly(connection);
+	}
+	
+	
+	public static void main(String[] args) throws SQLException, IOException {
 		App app = new App();		
+		
 		LogHandler logHandler = new LogHandler();
 		String logStr = "183.193.187.122 - - [24/Dec/2016:00:13:14 +0800] \"POST /socket.io/?EIO=3&transport=polling&j=12&t=LaiTH9P&b64=1&sid=rWxYshIVfGqzC15yAAEV HTTP/1.1\" 200 2 \"http://pmchat.24k.hk/studio?utm_source=pn14&utm_medium=ag&utm_campaign=yy&utm_content=AD_pcuiZS_top\" \"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)\"";
 		LogEntity logEntity = logHandler.getEntity(logStr);
 		app.insertLogEntity(logEntity);
+		ArrayList<String> strList = logHandler.getStringListFromPath("prototype/nginx.access.log");
+		app.insertStrlist(strList);
 		System.out.println("Hello World!");
 	}
+
+
+
+	
 }
