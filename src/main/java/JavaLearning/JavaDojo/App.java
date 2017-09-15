@@ -30,7 +30,7 @@ public class App {
 		return connection;
 	}
 
-	private void insertStrlist(LogEntity logEntity) throws SQLException {
+	private void insertLogEntity(LogEntity logEntity) throws SQLException {
 		QueryRunner run = new QueryRunner();
 		String sql = "INSERT INTO LogEntities"
 				+ "(ip,requestTime,requestMethod,requestPath,requestVersion,requestStatus,requestFromUrl,terminalInfor) "
@@ -51,7 +51,7 @@ public class App {
 			logEntities.add(logHandler.getEntity(logStr));
 		}
 		for (LogEntity logEntity : logEntities) {
-			app.insertStrlist(logEntity);
+			app.insertLogEntity(logEntity);
 		}
 
 		System.out.println("Hello World!");
