@@ -78,15 +78,13 @@ public class LogHandler {
 
 	private Date getTimeFromString(String logStr) {
 		Date date = null;
-		String time=logStr.split("\\[")[1].split("\\]")[0];
-		
+		String time=logStr.split("\\[")[1].split("\\]")[0];		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
 		try {
 			date = dateFormat.parse(time);
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 		return date;
 	}
 
