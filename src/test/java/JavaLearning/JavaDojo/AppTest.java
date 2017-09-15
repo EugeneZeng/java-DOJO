@@ -28,19 +28,5 @@ public class AppTest
         return new TestSuite( AppTest.class );
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        App app = new App();
-        String str = app.output("default");
-    	assertTrue( "tluafed".equals(str) );
-    	str = app.output("");
-    	assertTrue("".equals(str));
-    	str = app.output(null);
-    	assertTrue("".equals(str));
-    	str = app.output("default app for starter");
-    	assertTrue("tluafed ppa rof retrats".equals(str));
-    }
+  
 }
