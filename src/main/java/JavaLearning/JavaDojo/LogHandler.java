@@ -3,8 +3,7 @@ package JavaLearning.JavaDojo;
 import java.text.*;
 import java.io.*;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class LogHandler {
 
@@ -26,6 +25,8 @@ public class LogHandler {
 		logEntity.setRequestFromUrl(getUrl(logStr));
 		
 		logEntity.setTerminalInfor(getTerminalInforFromString(logStr));
+		
+		logEntity.setUpdateTime(new Date());
 
 		return logEntity;
 	}
