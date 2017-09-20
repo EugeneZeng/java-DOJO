@@ -94,25 +94,15 @@ public class LogHandler {
 		return ip;
 	}
 
-	public ArrayList<String> getStringListFromPath(String path) throws IOException {
-		ArrayList<String> strList = new ArrayList<String>();
+	public BufferedReader getStringListFromPath(String path) throws IOException {
+	
 		if (path == null) {
-			return strList;
-		}
-		FileReader fr;
-		try {
-			fr = new FileReader(path);
-		} catch (FileNotFoundException e) {
-			return strList;
-		}
-
+			return null;
+		}		 		
+		FileReader	fr = new FileReader(path);
 		BufferedReader br = new BufferedReader(fr);
-		String read = null;
-		while ((read = br.readLine()) != null) {
-			strList.add(read);
-		}
-		br.close();	
-		return strList;
+		
+		return br;
 		
 	}
 
